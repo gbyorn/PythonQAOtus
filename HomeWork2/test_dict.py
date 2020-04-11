@@ -11,7 +11,8 @@ class TestDict:
 
     def test_dict_three(self, fixture_dict_params):
         copy_of_dict = fixture_dict_params.copy()
-        assert copy_of_dict.pop('32') == 2
+        copy_of_dict.pop('32')
+        assert copy_of_dict == {'31': 1, '33': 3, '34': 4, '35': 5}
 
     def test_dict_four(self, fixture_dict_params):
         copy_of_dict = fixture_dict_params.copy()

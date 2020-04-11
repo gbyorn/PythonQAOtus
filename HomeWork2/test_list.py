@@ -4,7 +4,7 @@ class TestList:
 
     def test_list_one(self, fixture_list_params):
         list_copy = fixture_list_params.copy()
-        assert list_copy == [11, 12, 13, 14, 15]
+        assert list_copy == fixture_list_params
 
     def test_list_two(self, fixture_list_params):
         list_copy = fixture_list_params.copy()
