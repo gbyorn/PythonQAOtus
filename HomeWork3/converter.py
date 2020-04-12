@@ -23,11 +23,12 @@ with open("input_json_file.json") as input_json:
             "address": user['address']
         }
 
-for user in users_dict.values():
+for number, user in users_dict.items():
     temp_user = user.copy()
     temp_user["books"] = []
-    for book in books_dict.values():
-        temp_user["books"].append(book)
+    if books_dict:
+        temp_user["books"].append(books_dict[number])
+        books_dict.pop(number)
     output_dict["Users"].append(temp_user)
 
 with open("output_json_file.json", "w") as output_json:
