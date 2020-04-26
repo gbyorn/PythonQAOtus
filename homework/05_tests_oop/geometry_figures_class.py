@@ -6,19 +6,22 @@ class GeometryFigure:
         self.sides = [*args]
 
     def name(self):
-        pass
+        return 'Geometry figure'
 
     def area(self):
-        pass
+        return self.sides[0] * self.sides[1]
 
     def angles(self):
-        pass
+        return len(self.sides)
 
     def perimeter(self):
-        pass
+        return sum(self.sides)
 
     def add_square(self, second_figure):
-        pass
+        try:
+            return self.area() + second_figure.area()
+        except AttributeError:
+            return "Error! Incorrect type of class."
 
 
 class Circle(GeometryFigure):
@@ -29,11 +32,17 @@ class Circle(GeometryFigure):
         else:
             return super().__new__(cls)
 
+    def name(self):
+        return GeometryFigure.name(self) + ' Circle'
+
     def area(self):
         return (self.sides[0] ** 2) * math.pi
 
+    def angles(self):
+        return 0
+
     def perimeter(self):
-        return self.sides[0] * 2 * math.pi
+        return GeometryFigure.perimeter(self) * 2 * math.pi
 
 
 class Triangle(GeometryFigure):
@@ -46,6 +55,9 @@ class Triangle(GeometryFigure):
         else:
             return super().__new__(cls)
 
+    def name(self):
+        return GeometryFigure.name(self) + ' Triangle'
+
     def area(self):
         p = (sum(self.sides) / 2)
         first_side = self.sides[0]
@@ -54,7 +66,7 @@ class Triangle(GeometryFigure):
         return math.sqrt(p * (p - first_side) * (p - second_side) * (p - third_side))
 
     def perimeter(self):
-        return sum(self.sides)
+        return GeometryFigure.perimeter(self)
 
 
 class Rectangle(GeometryFigure):
@@ -65,11 +77,14 @@ class Rectangle(GeometryFigure):
         else:
             return super().__new__(cls)
 
-    def area(self):
-        return self.sides[0] * self.sides[1]
+    def name(self):
+        return GeometryFigure.name(self) + ' Rectangle'
+
+    def angles(self):
+        return GeometryFigure.angles(self) * 2
 
     def perimeter(self):
-        return sum(self.sides) * 2
+        return GeometryFigure.perimeter(self) * 2
 
 
 class Square(GeometryFigure):
@@ -80,18 +95,14 @@ class Square(GeometryFigure):
         else:
             return super().__new__(cls)
 
+    def name(self):
+        return GeometryFigure.name(self) + ' Square'
+
     def area(self):
         return self.sides[0] ** 2
 
+    def angles(self):
+        return GeometryFigure.angles(self) * 4
+
     def perimeter(self):
-        return self.sides[0] * 4
-
-
-circle = Circle(7)
-triangle = Triangle(2, 2, 3)
-rectangle = Rectangle(2, 4)
-square = Square(4)
-print(triangle.perimeter())
-print(circle.perimeter())
-print(rectangle.perimeter())
-print(square.perimeter())
+        return GeometryFigure.perimeter(self) * 4

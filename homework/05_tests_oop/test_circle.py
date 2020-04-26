@@ -4,7 +4,9 @@ import math
 
 class TestCircle:
     def test_name(self, fixture_circle_params):
-        pass
+        circle = figure.Circle(fixture_circle_params)
+        name = "Geometry figure Circle"
+        assert circle.name() == name
 
     def test_area(self, fixture_circle_params):
         circle = figure.Circle(fixture_circle_params)
@@ -12,7 +14,9 @@ class TestCircle:
         assert circle.area() == area
 
     def test_angles(self, fixture_circle_params):
-        pass
+        circle = figure.Circle(fixture_circle_params)
+        angles = 0
+        assert circle.angles() == angles
 
     def test_perimeter(self, fixture_circle_params):
         circle = figure.Circle(fixture_circle_params)
@@ -20,4 +24,7 @@ class TestCircle:
         assert circle.perimeter() == perimeter
 
     def test_add_square(self, fixture_circle_params):
-        pass
+        another_rectangle = figure.Rectangle(2, 5)
+        circle = figure.Circle(fixture_circle_params)
+        add_area = another_rectangle.area() + circle.area()
+        assert circle.add_square(another_rectangle) == add_area
